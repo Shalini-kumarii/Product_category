@@ -1,0 +1,67 @@
+@model Product;
+
+@using Pro_cat.Models;
+@using System.Collections.Generic;
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <title>Product!</title>
+     <link rel="stylesheet" href="~/css/style.css" /> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="box">
+            <div class="col-sm-9 " style="background-color:lightgrey;">
+                <h1> Check out some Products!</h1>
+                <div class="nav navbar-nav navbar-left">
+
+                    <p>Products |<a href="Category">Category</a></p>
+                    <h3>Existing Products</h3>
+                    <table>
+                        <tbody>
+                    @foreach(var pro in @ViewBag.Product)
+                    {
+                        
+                        <tr>
+                            <td><a href="/product/@pro.ProductId">@pro.Name</a></td>
+                        </tr>
+                    }
+                        </tbody>
+                    </table>
+                    
+
+                </div>
+                <div class="nav navbar-nav navbar-right">
+                    <form asp-action="NewProduct">
+
+                        <span asp-validation-for="Name"></span><br>
+                        <label asp-for="Name"></label>
+                        <input class="form-control input-lg" asp-for="Name">
+                        <span asp-validation-for="Description"></span><br>
+                        <label asp-for="Description"></label>
+                        <input class="form-control input-lg" asp-for="Description">
+                        <span asp-validation-for="Price"></span><br>
+                        <label asp-for="Price"></label>
+                        <input class="form-control input-lg" asp-for="Price">
+                        <input type="submit" value="Add a Product">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+
+</body>
+
+</html>
